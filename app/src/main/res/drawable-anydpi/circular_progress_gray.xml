@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
-        <shape
+        <shape android:shape="ring"
             android:innerRadiusRatio="2.7"
-            android:shape="ring"
-            android:thicknessRatio="50.0"
+            android:thicknessRatio="50"
             android:useLevel="false">
-
-            <solid android:color="#D4DEE7" />
+            <solid android:color="@color/progress_bar_gray"/>
         </shape>
     </item>
 </layer-list>
