@@ -1,5 +1,6 @@
 package com.example.a7minuteworkout
 
+import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,6 +20,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private var restTimer: CountDownTimer? = null
     private var restProgress = 0
+    private var restTimerDuration: Long = 10
 
     private var exerciseTimer: CountDownTimer? = null
     private var exerciseProgress = 0
@@ -70,7 +72,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private fun setRestProgressBar() {
         progressBar.progress = restProgress
-        restTimer = object:CountDownTimer(10000,1000) {
+        restTimer = object:CountDownTimer(restTimerDuration*1000,1000) {
             override fun onTick(millisUntilFinished: Long) {
                 restProgress++
                 progressBar.progress = 10-restProgress
@@ -121,7 +123,9 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                     exerciseAdapter!!.notifyDataSetChanged()
                     setupRestView()
                 } else {
-                    Toast.makeText(this@ExerciseActivity,"Workout finished",Toast.LENGTH_SHORT).show()
+                    finish()
+                    val intent = Intent(this@ExerciseActivity,FinishActivity::class.java)
+                    startActivity(intent)
                 }
             }
         }.start()
